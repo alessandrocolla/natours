@@ -4,7 +4,7 @@ import { showAlert } from "./alerts";
 //import axios from "axios";
 
 export const login = async (email, password) => {
-  const req = await fetch("http://127.0.0.1:3000/api/v1/users/login", {
+  const req = await fetch("/api/v1/users/login", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -48,12 +48,12 @@ export const login = async (email, password) => {
 };
 
 export const logout = async () => {
-  const req = await fetch("http://127.0.0.1:3000/api/v1/users/logout", {
+  const req = await fetch("/api/v1/users/logout", {
     method: "GET",
   });
 
   const res = await req.json();
-  console.log(res);
+  /* console.log(res); */
   if (res.status === "success") location.assign("/");
   else showAlert("error", "Error logging out, try again.");
 };
