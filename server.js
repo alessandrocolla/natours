@@ -34,6 +34,13 @@ process.on("unhandledRejection", (err) => {
   });
 });
 
+process.on("SIGTERM", () => {
+  console.log("SIGTERM RECEIVED, SHUTTING DOWN.");
+  server.close(() => {
+    console.log("PROCESS TERMINATED, SHUT DOWN COMPLETED.");
+  });
+});
+
 /* process.on("uncaughtException", (err) => {
   console.log("Unahndler rejection! Shutting down...");
   console.log(err.name, err.message);
