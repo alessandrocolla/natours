@@ -8,6 +8,7 @@ const hpp = require("hpp");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const cors = require("cors");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -27,6 +28,22 @@ app.set("views", `${__dirname}/views`);
 app.use(cors());
 
 //1 global middlewares
+//Implement CORS
+
+app.use(cors());
+
+/* 
+// To allow only one domain for CORS operations:
+
+app.use(cors({
+  origin: "https://www.natours.com",
+}))
+
+*/
+
+app.options("*", cors());
+//app.options("/api/v1/tours/:id", cors());
+
 //Set security HTTP headers
 
 const connectSrcUrls = [
